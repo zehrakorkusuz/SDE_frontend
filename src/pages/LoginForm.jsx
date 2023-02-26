@@ -1,14 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
+import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import { storeUser } from "../functions/localstorage";
 
 function LoginForm() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const email = e.target.email.value;
+    const password = e.target.password.value;
 
     const response = await fetch(
       "https://facade-service-7x5inv6roa-lz.a.run.app/api/login",
@@ -20,13 +21,23 @@ function LoginForm() {
         body: JSON.stringify({ email, password }),
       }
     );
+    const data = await response.json();
 
     if (response.status === 200) {
-      const data = await response.json();
       storeUser(data);
-      navigate("/dashboard");
+      Swal.fire({
+        title: "Successful login",
+        text: `Hello, ${data.email}`,
+        icon: "success",
+        allowOutsideClick: false,
+      }).then(() => navigate("/dashboard"));
     } else {
-      alert("Authentication failed");
+      Swal.fire({
+        title: "Authentication failed",
+        text: `${data.error}`,
+        icon: "error",
+        allowOutsideClick: false,
+      });
     }
   };
 
@@ -34,21 +45,11 @@ function LoginForm() {
     <form onSubmit={handleSubmit}>
       <label>
         Email:
-        <input
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
+        <input type="email" name="email" required />
       </label>
       <label>
         Password:
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
+        <input type="password" name="password" required />
       </label>
       <button type="submit">Login</button>
     </form>
