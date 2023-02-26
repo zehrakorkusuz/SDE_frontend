@@ -3,6 +3,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Error from "../components/Error";
 import Loading from "../components/Loading";
+import NewContentForm from "../components/NewContentForm";
 import { getToken } from "../functions/localstorage";
 
 export default function Dashboard() {
@@ -15,6 +16,7 @@ export default function Dashboard() {
           Authorization: `Bearer ${getToken()}`,
         },
       }).then((res) => res.json()),
+    refetchInterval: 60 * 1000,
   });
 
   if (isLoading) return <Loading />;
@@ -24,12 +26,14 @@ export default function Dashboard() {
   if (data.error) return <Error message={data.error} />;
 
   return (
-    <>
+    <div>
+      <NewContentForm />
       {data.map((c) => (
         <p key={c._id}>
           <Link to={c._id}>{c.title}</Link>
+          {new Date() - new Date(c.created_at) < 1000 * 60 * 10 && "NEW!"}
         </p>
       ))}
-    </>
+    </div>
   );
 }
