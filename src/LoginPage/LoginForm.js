@@ -7,7 +7,7 @@ function LoginForm({ setIsLoggedIn }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const response = await fetch('http://your-auth-service.com/api/login', {
+    const response = await fetch('https://data-service-7x5inv6roa-lz.a.run.app/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
