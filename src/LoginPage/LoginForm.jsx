@@ -1,8 +1,10 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-function LoginForm({ setIsLoggedIn }) {
+function LoginForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -20,8 +22,9 @@ function LoginForm({ setIsLoggedIn }) {
 
     if (response.status === 200) {
       const data = await response.json();
-      localStorage.setItem("jwt", data.token);
-      setIsLoggedIn(true);
+      localStorage.setItem("token", data.token);
+      localStorage.setItem("email", data.email);
+      navigate("/dashboard");
     } else {
       alert("Authentication failed");
     }
