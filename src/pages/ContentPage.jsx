@@ -1,6 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
-import React from "react";
+import React, { useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import ChangeTextForm from "../components/ChangeTextForm";
+import ContentTextParagraphs from "../components/ContentTextParagraphs";
 import Error from "../components/Error";
 import Loading from "../components/Loading";
 import { getToken } from "../functions/localstorage";
@@ -22,6 +24,8 @@ export default function ContentPage() {
       ).then((res) => res.json()),
   });
 
+  const [isModifingText, setIsModifingText] = useState(false);
+
   if (isLoading) return <Loading />;
 
   if (error) return <Error message={error.message} />;
@@ -32,9 +36,18 @@ export default function ContentPage() {
     <div>
       <Link to={"/dashboard"}>Go Back</Link>
       <h1>{data.title}</h1>
-      {data.content_text.split("\n").map((line, index) => (
-        <p key={index}>{line}</p>
-      ))}
+      {(isModifingText && (
+        <ChangeTextForm
+          id={id}
+          content_text={data.content_text}
+          closeModify={() => setIsModifingText(false)}
+        />
+      )) || (
+        <ContentTextParagraphs
+          content_text={data.content_text}
+          onClick={() => setIsModifingText(true)}
+        />
+      )}
       <img src={data.img_url} alt={data.title} />
     </div>
   );
