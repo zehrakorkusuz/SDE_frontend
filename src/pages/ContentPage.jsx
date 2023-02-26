@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import { useParams } from "react-router-dom";
+import { getToken } from "../functions/localstorage";
 
 export default function ContentPage() {
   const { id } = useParams();
@@ -13,7 +14,7 @@ export default function ContentPage() {
         {
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
+            Authorization: `Bearer ${getToken()}`,
           },
         }
       ).then((res) => res.json()),

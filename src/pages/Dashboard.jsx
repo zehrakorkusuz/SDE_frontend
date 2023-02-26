@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import { Link } from "react-router-dom";
+import { getToken } from "../functions/localstorage";
 
 export default function Dashboard() {
   const { isLoading, error, data } = useQuery({
@@ -9,7 +10,7 @@ export default function Dashboard() {
       fetch("https://facade-service-7x5inv6roa-lz.a.run.app/api/content", {
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
+          Authorization: `Bearer ${getToken()}`,
         },
       }).then((res) => res.json()),
   });

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { storeUser } from "../functions/localstorage";
 
 function LoginForm() {
   const [email, setEmail] = useState("");
@@ -22,8 +23,7 @@ function LoginForm() {
 
     if (response.status === 200) {
       const data = await response.json();
-      localStorage.setItem("token", data.token);
-      localStorage.setItem("email", data.email);
+      storeUser(data);
       navigate("/dashboard");
     } else {
       alert("Authentication failed");
