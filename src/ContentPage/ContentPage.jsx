@@ -23,9 +23,13 @@ export default function ContentPage() {
 
   if (error) return "An error has occurred: " + error.message;
 
-  return <div>
-    <h1>{data.title}</h1>
-    {data.content_text.split("\n").map((line) => <p>{line}</p>)}
-    <img src={data.img_url} alt={data.title}/>
-  </div>;
+  return (
+    <div>
+      <h1>{data.title}</h1>
+      {data.content_text.split("\n").map((line) => (
+        <p>{line}</p>
+      ))}
+      <img src={data.img_url} alt={data.title} />
+    </div>
+  );
 }
