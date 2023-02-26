@@ -3,6 +3,7 @@ import { useState } from "react";
 import { FaBars } from "react-icons/fa";
 import { AiOutlineClose } from "react-icons/ai";
 import { Link } from "react-router-dom";
+import LogOutButton from "./LogOutButton";
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -40,6 +41,7 @@ function Navbar() {
                 Login
               </Link>
             </li>
+            <LogOutButton />
           </ul>
         )}
       </div>
