@@ -1,6 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import Error from "../components/Error";
+import Loading from "../components/Loading";
 import { getToken } from "../functions/localstorage";
 
 export default function ContentPage() {
@@ -20,12 +22,15 @@ export default function ContentPage() {
       ).then((res) => res.json()),
   });
 
-  if (isLoading) return "Loading...";
+  if (isLoading) return <Loading />;
 
-  if (error) return "An error has occurred: " + error.message;
+  if (error) return <Error message={error.message} />;
+
+  if (data.error) return <Error message={data.error} />;
 
   return (
     <div>
+      <Link to={"/dashboard"}>Go Back</Link>
       <h1>{data.title}</h1>
       {data.content_text.split("\n").map((line, index) => (
         <p key={index}>{line}</p>

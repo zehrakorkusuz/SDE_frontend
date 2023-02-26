@@ -1,6 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import { Link } from "react-router-dom";
+import Error from "../components/Error";
+import Loading from "../components/Loading";
 import { getToken } from "../functions/localstorage";
 
 export default function Dashboard() {
@@ -15,13 +17,19 @@ export default function Dashboard() {
       }).then((res) => res.json()),
   });
 
-  if (isLoading) return "Loading...";
+  if (isLoading) return <Loading />;
 
-  if (error) return "An error has occurred: " + error.message;
+  if (error) return <Error message={error.message} />;
 
-  return data.map((c) => (
-    <p key={c._id}>
-      <Link to={c._id}>{c.title}</Link>
-    </p>
-  ));
+  if (data.error) return <Error message={data.error} />;
+
+  return (
+    <>
+      {data.map((c) => (
+        <p key={c._id}>
+          <Link to={c._id}>{c.title}</Link>
+        </p>
+      ))}
+    </>
+  );
 }
