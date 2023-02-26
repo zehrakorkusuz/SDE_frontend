@@ -1,11 +1,11 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-// import NavBar from "./components/navbar.jsx";
-import Dashboard from "./pages/Dashboard.jsx";
-import LoginForm from "./pages/LoginForm.jsx";
-import WelcomePage from "./pages/WelcomePage.jsx";
-import ContentPage from "./pages/ContentPage.jsx";
+import NavBar from "./components/NavBar";
+import Dashboard from "./pages/Dashboard";
+import LoginForm from "./pages/LoginForm";
+import WelcomePage from "./pages/WelcomePage";
+import ContentPage from "./pages/ContentPage";
 
 const queryClient = new QueryClient();
 
@@ -13,7 +13,7 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <Router>
-        {/* <NavBar /> */}
+        <NavBar />
         <Routes>
           <Route exact path="/" element={<WelcomePage />} />
           <Route exact path="/login" element={<LoginForm />} />
