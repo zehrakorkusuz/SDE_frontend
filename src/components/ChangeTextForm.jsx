@@ -42,19 +42,39 @@ export default function ChangeTextForm({ id, content_text, closeModify }) {
     closeModify();
   }
 
+  const buttonStyle = {
+    fontSize: "inherit",
+    padding: "1%",
+    borderRadius: "5%",
+    width: "20%",
+  };
+
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} style={{ fontSize: "x-large" }}>
       <label htmlFor="textarea">Modify the text</label>
-      <br />
-      <button type="submit">Save changes</button>
       <br />
       <textarea
         id="textarea"
         defaultValue={content_text.trim()}
         autoFocus
-        rows={30}
-        style={{ width: "80%", height: "auto" }}
+        rows={25}
+        style={{ width: "100%", height: "100%", fontSize: "inherit" }}
       />
+      <br />
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+        }}
+      >
+        <button type="submit" style={buttonStyle}>
+          Save changes
+        </button>
+
+        <button onClick={() => closeModify()} style={buttonStyle}>
+          Cancel
+        </button>
+      </div>
     </form>
   );
 }

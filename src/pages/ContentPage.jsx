@@ -5,6 +5,7 @@ import ChangeTextForm from "../components/ChangeTextForm";
 import ContentTextParagraphs from "../components/ContentTextParagraphs";
 import Error from "../components/Error";
 import Loading from "../components/Loading";
+import PageHalfImage from "../components/PageHalfImage";
 import { getToken } from "../functions/localstorage";
 
 export default function ContentPage() {
@@ -33,7 +34,7 @@ export default function ContentPage() {
   if (data.error) return <Error message={data.error} />;
 
   return (
-    <div>
+    <PageHalfImage content={data}>
       <Link to={"/dashboard"}>Go Back</Link>
       <h1>{data.title}</h1>
       {(isModifingText && (
@@ -48,7 +49,6 @@ export default function ContentPage() {
           onClick={() => setIsModifingText(true)}
         />
       )}
-      <img src={data.img_url} alt={data.title} />
-    </div>
+    </PageHalfImage>
   );
 }

@@ -35,13 +35,25 @@ export default function NewContentForm() {
       );
   }
 
+  const inputStyle = { fontSize: "inherit" };
+
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        Create a new blog post
-        <input name="prompt" />
-      </label>
-      <button type="submit">Submit</button>
+    <form
+      onSubmit={handleSubmit}
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        width: "40%",
+        fontSize: "x-large",
+        gap: "0.3em",
+      }}
+    >
+      <label htmlFor="prompt">Create a new blog post</label>
+      <input name="prompt" id="prompt" style={inputStyle} />
+
+      <button type="submit" style={inputStyle}>
+        Submit
+      </button>
     </form>
   );
 }

@@ -11,3 +11,19 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+:root {
+  --primary-light-color: #abf9fe;
+  --primary-dark-color: #6ae4ff;
+  --secondary-light-color: #ffa800;
+  --secondary-dark-color: #ff5e00;
+}
+
+button {
+  background-color: var(--secondary-light-color);
+  /* transition: all 0.25s ease-in-out; */
+}
+
+button:hover {
+  background-color: var(--secondary-dark-color);
+}

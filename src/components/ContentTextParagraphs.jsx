@@ -9,7 +9,12 @@ export default function ContentTextParagraphs({ content_text, onClick }) {
         .map((line, index) => (
           <p key={index}>{line}</p>
         ))}
-      <button onClick={onClick}>Modify Text</button>
+      <button
+        onClick={onClick}
+        style={{ fontSize: "inherit", padding: "1%", borderRadius: "5%" }}
+      >
+        Modify Text
+      </button>
     </div>
   );
 }

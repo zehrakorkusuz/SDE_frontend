@@ -8,6 +8,13 @@ function LoginForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    Swal.fire({
+      title: "Loading",
+      html: "Wait just a little bit...",
+      showConfirmButton: false,
+      allowOutsideClick: false,
+    });
+
     const email = e.target.email.value;
     const password = e.target.password.value;
 
@@ -22,6 +29,8 @@ function LoginForm() {
       }
     );
     const data = await response.json();
+
+    Swal.close();
 
     if (response.status === 200) {
       storeUser(data);
@@ -41,17 +50,40 @@ function LoginForm() {
     }
   };
 
+  const inputStyle = { fontSize: "inherit" };
+
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        Email:
-        <input type="email" name="email" required />
-      </label>
-      <label>
-        Password:
-        <input type="password" name="password" required />
-      </label>
-      <button type="submit">Login</button>
+    <form
+      onSubmit={handleSubmit}
+      style={{
+        position: "absolute",
+        top: "50%",
+        left: "50%",
+        transform: "translate(-50%, -50%)",
+        display: "flex",
+        flexDirection: "column",
+        fontSize: "xx-large",
+        gap: "0.5em",
+        padding: "2%",
+        border: "1px solid black",
+        borderRadius: "5%",
+      }}
+    >
+      <label htmlFor="email">Email:</label>
+      <input type="email" name="email" id="email" required style={inputStyle} />
+
+      <label htmlFor="password">Password:</label>
+      <input
+        type="password"
+        name="password"
+        id="password"
+        required
+        style={inputStyle}
+      />
+
+      <button type="submit" style={inputStyle}>
+        Login
+      </button>
     </form>
   );
 }

@@ -14,32 +14,51 @@ function Navbar() {
   };
 
   return (
-    <nav className="navbar">
-      <div className="navbar-container">
-        <div className="menu-icon" onClick={toggleNavbar}>
-          {isOpen ? <AiOutlineClose /> : <FaBars />}
-        </div>
-        {isOpen && (
-          <ul className={isOpen ? "nav-menu active" : "nav-menu"}>
-            <li className="nav-item">
-              <Link to="/" className="nav-link">
-                Home
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link to="/dashboard" className="nav-link">
-                Dashboard
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link to="/login" className="nav-link">
-                Login
-              </Link>
-            </li>
-            <LogOutButton />
-          </ul>
-        )}
+    <nav
+      style={{
+        width: "100%",
+        display: "flex",
+        borderBottom: "1px solid black",
+      }}
+    >
+      <div
+        onClick={toggleNavbar}
+        style={{
+          fontSize: "2.2rem",
+          width: "5%",
+          textAlign: "center",
+          alignItems: "center",
+          backgroundColor: "var(--primary-dark-color)",
+        }}
+      >
+        {isOpen ? <AiOutlineClose /> : <FaBars />}
       </div>
+      {isOpen && (
+        <ul
+          style={{
+            width: "95%",
+            display: "flex",
+            justifyContent: "space-around",
+            margin: "auto",
+            listStyleType: "none",
+            height: "auto",
+            fontSize: "x-large",
+          }}
+        >
+          <li>
+            <Link to="/">Home</Link>
+          </li>
+          <li>
+            <Link to="/dashboard">Dashboard</Link>
+          </li>
+          <li>
+            <Link to="/login">Login</Link>
+          </li>
+          <li>
+            <LogOutButton />
+          </li>
+        </ul>
+      )}
     </nav>
   );
 }

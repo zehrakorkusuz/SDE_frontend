@@ -1,13 +1,17 @@
 import React from "react";
+import PageHalfImage from "../components/PageHalfImage";
 
 export default function WelcomePage() {
+  const example_content = {
+    img_url:
+      "https://storage.googleapis.com/sde-storage-bucket/simone__sde.itA_website_that_uses_machine_learning_to_create_blog_posts_and_images.jpeg",
+    title:
+      "A website that uses machine learning to create blog posts and images",
+  };
+
   return (
-    <div>
-      <img
-        src="https://storage.googleapis.com/sde-storage-bucket/simone__sde.itA_website_that_uses_machine_learning_to_create_blog_posts_and_images.jpeg"
-        alt="A website that uses machine learning to create blog posts and images"
-      ></img>
-      <div>
+    <PageHalfImage content={example_content}>
+      <div style={{ fontSize: "larger" }}>
         <p>
           As technology continues to advance, so too do the possibilities for
           businesses. Machine learning is one of the most exciting new
@@ -60,7 +64,6 @@ export default function WelcomePage() {
           traffic, better search engine rankings, and more conversions.
         </p>
       </div>
-      <p>(This post was made by our product itself)</p>
-    </div>
+    </PageHalfImage>
   );
 }
