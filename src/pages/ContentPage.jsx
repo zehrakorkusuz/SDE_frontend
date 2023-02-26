@@ -6,7 +6,7 @@ export default function ContentPage() {
   const { id } = useParams();
 
   const { isLoading, error, data } = useQuery({
-    queryKey: ["repoData"],
+    queryKey: [`single_id_${id}`],
     queryFn: () =>
       fetch(
         `https://facade-service-7x5inv6roa-lz.a.run.app/api/content/${id}`,
@@ -26,8 +26,8 @@ export default function ContentPage() {
   return (
     <div>
       <h1>{data.title}</h1>
-      {data.content_text.split("\n").map((line) => (
-        <p>{line}</p>
+      {data.content_text.split("\n").map((line, index) => (
+        <p key={index}>{line}</p>
       ))}
       <img src={data.img_url} alt={data.title} />
     </div>

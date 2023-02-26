@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 export default function Dashboard() {
   const { isLoading, error, data } = useQuery({
-    queryKey: ["repoData"],
+    queryKey: ["content_data"],
     queryFn: () =>
       fetch("https://facade-service-7x5inv6roa-lz.a.run.app/api/content", {
         headers: {
@@ -19,10 +19,8 @@ export default function Dashboard() {
   if (error) return "An error has occurred: " + error.message;
 
   return data.map((c) => (
-    <p>
-      <Link to={c._id} key={c._id}>
-        {c.title}
-      </Link>
+    <p key={c._id}>
+      <Link to={c._id}>{c.title}</Link>
     </p>
   ));
 }
