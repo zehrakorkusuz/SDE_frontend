@@ -1,26 +1,29 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 function LoginForm({ setIsLoggedIn }) {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const response = await fetch('https://data-service-7x5inv6roa-lz.a.run.app/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ email, password }),
-    });
+    const response = await fetch(
+      "https://facade-service-7x5inv6roa-lz.a.run.app/api/login",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      }
+    );
 
-    if (response.ok) {
+    if (response.status === 200) {
       const data = await response.json();
-      localStorage.setItem('jwt', data.jwt);
+      localStorage.setItem("jwt", data.token);
       setIsLoggedIn(true);
     } else {
-      alert('Authentication failed');
+      alert("Authentication failed");
     }
   };
 
