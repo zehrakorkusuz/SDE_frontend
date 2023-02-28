@@ -11,8 +11,6 @@ export default function Loading() {
     fontSize: "xx-large",
     gap: "0.5em",
     padding: "2%",
-    border: "1px solid black",
-    borderRadius: "5%",
   };
 
   return <div style={style}>Loading...</div>;

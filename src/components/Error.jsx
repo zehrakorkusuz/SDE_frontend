@@ -12,8 +12,6 @@ export default function Error({ message }) {
     fontSize: "xx-large",
     gap: "0.5em",
     padding: "2%",
-    border: "1px solid black",
-    borderRadius: "5%",
   };
 
   if (message === "No Token given") {
