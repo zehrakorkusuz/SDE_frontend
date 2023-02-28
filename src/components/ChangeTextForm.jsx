@@ -1,6 +1,7 @@
 import React from "react";
 import Swal from "sweetalert2";
 import { useQueryClient } from "@tanstack/react-query";
+import { GrammarlyEditorPlugin } from "@grammarly/editor-sdk-react";
 import { getToken } from "../functions/localstorage";
 
 const backend_url = process.env.REACT_APP_BACKEND_URL;
@@ -55,13 +56,15 @@ export default function ChangeTextForm({ id, content_text, closeModify }) {
     <form onSubmit={handleSubmit} style={{ fontSize: "x-large" }}>
       <label htmlFor="textarea">Modify the text</label>
       <br />
-      <textarea
-        id="textarea"
-        defaultValue={content_text.trim()}
-        autoFocus
-        rows={25}
-        style={{ width: "100%", height: "100%", fontSize: "inherit" }}
-      />
+      <GrammarlyEditorPlugin clientId="client_QzTJJhevmqQn3uy9Kj38eE">
+        <textarea
+          id="textarea"
+          defaultValue={content_text.trim()}
+          autoFocus
+          rows={25}
+          style={{ width: "100%", height: "100%", fontSize: "inherit" }}
+        />
+      </GrammarlyEditorPlugin>
       <br />
       <div
         style={{
