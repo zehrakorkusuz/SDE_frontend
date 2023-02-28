@@ -8,6 +8,8 @@ import Loading from "../components/Loading";
 import PageHalfImage from "../components/PageHalfImage";
 import { getToken } from "../functions/localstorage";
 
+const backend_url = process.env.REACT_APP_BACKEND_URL;
+
 export default function ContentPage() {
   const { id } = useParams();
 
@@ -15,7 +17,7 @@ export default function ContentPage() {
     queryKey: [`single_id_${id}`],
     queryFn: () =>
       fetch(
-        `https://facade-service-7x5inv6roa-lz.a.run.app/api/content/${id}`,
+        `${backend_url}/content/${id}`,
         {
           headers: {
             "Content-Type": "application/json",

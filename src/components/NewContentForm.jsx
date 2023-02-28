@@ -2,12 +2,14 @@ import React from "react";
 import Swal from "sweetalert2";
 import { getToken } from "../functions/localstorage";
 
+const backend_url = process.env.REACT_APP_BACKEND_URL;
+
 export default function NewContentForm() {
   function handleSubmit(e) {
     e.preventDefault();
     const prompt = e.target.prompt.value;
 
-    fetch(`https://facade-service-7x5inv6roa-lz.a.run.app/api/create`, {
+    fetch(`${backend_url}/create`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

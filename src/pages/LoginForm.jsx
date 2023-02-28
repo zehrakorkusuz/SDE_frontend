@@ -3,6 +3,8 @@ import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import { storeUser } from "../functions/localstorage";
 
+const backend_url = process.env.REACT_APP_BACKEND_URL;
+
 function LoginForm() {
   const navigate = useNavigate();
 
@@ -19,7 +21,7 @@ function LoginForm() {
     const password = e.target.password.value;
 
     const response = await fetch(
-      "https://facade-service-7x5inv6roa-lz.a.run.app/api/login",
+      `${backend_url}/login`,
       {
         method: "POST",
         headers: {
@@ -65,8 +67,6 @@ function LoginForm() {
         fontSize: "xx-large",
         gap: "0.5em",
         padding: "2%",
-        border: "1px solid black",
-        borderRadius: "5%",
       }}
     >
       <label htmlFor="email">Email:</label>

@@ -3,6 +3,8 @@ import Swal from "sweetalert2";
 import { useQueryClient } from "@tanstack/react-query";
 import { getToken } from "../functions/localstorage";
 
+const backend_url = process.env.REACT_APP_BACKEND_URL;
+
 export default function ChangeTextForm({ id, content_text, closeModify }) {
   const queryClient = useQueryClient();
 
@@ -10,7 +12,7 @@ export default function ChangeTextForm({ id, content_text, closeModify }) {
     e.preventDefault();
     const content_text = e.target.textarea.value;
 
-    fetch(`https://facade-service-7x5inv6roa-lz.a.run.app/api/content/${id}`, {
+    fetch(`${backend_url}/content/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
