@@ -63,6 +63,9 @@ export default function WelcomePage() {
           target audience more effectively, resulting in increased website
           traffic, better search engine rankings, and more conversions.
         </p>
+        <footer style={{ fontSize: "small" }}>
+          (This post was made by our product)
+        </footer>
       </div>
     </PageHalfImage>
   );
