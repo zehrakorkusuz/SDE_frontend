@@ -51,7 +51,9 @@ export default function Dashboard() {
         {data.map((c) => (
           <p key={c._id}>
             <Link to={c._id}>{c.title}</Link>
-            {new Date() - new Date(c.created_at) < 1000 * 60 * 10 && "NEW!"}
+            {new Date() - new Date(c.created_at) < 1000 * 60 * 10 && (
+              <>&nbsp;&nbsp; NEW!</>
+            )}
           </p>
         ))}
       </div>
