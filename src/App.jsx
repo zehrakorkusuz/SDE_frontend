@@ -6,6 +6,7 @@ import Dashboard from "./pages/Dashboard";
 import LoginForm from "./pages/LoginForm";
 import WelcomePage from "./pages/WelcomePage";
 import ContentPage from "./pages/ContentPage";
+import AboutPage from "./pages/AboutPage";
 
 const queryClient = new QueryClient();
 
@@ -17,6 +18,7 @@ function App() {
         <Routes>
           <Route exact path="/" element={<WelcomePage />} />
           <Route exact path="/login" element={<LoginForm />} />
+          <Route exact path="/about" element={<AboutPage />} />
           <Route exact path="/dashboard" element={<Dashboard />} />
           <Route exact path="/dashboard/:id" element={<ContentPage />} />
         </Routes>
